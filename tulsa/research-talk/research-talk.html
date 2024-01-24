@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>.hi[A time-varying finance-led model for U.S. business cycles]</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="University of Tulsa" />
+    <script src="research-talk_files/header-attrs/header-attrs.js"></script>
+    <link href="research-talk_files/remark-css/default.css" rel="stylesheet" />
+    <link href="research-talk_files/remark-css/metropolis.css" rel="stylesheet" />
+    <link href="research-talk_files/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="tu-css.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# .hi[A time-varying finance-led model for U.S. business cycles]
+]
+.subtitle[
+## .note[Marcio Santetti]
+]
+.author[
+### University of Tulsa
+]
+.date[
+### January 2024
+]
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class: middle, center, inverse
+
+
+.b[Marcio Santetti, Ph.D.]
+
+&lt;br&gt;
+
+.b[Economics Department]
+
+.b[Skidmore College]
+
+
+[<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M64 112c-8.8 0-16 7.2-16 16v22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16H64zM48 212.2V384c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64H448c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z"/></svg> msantetti@skidmore.edu](msantetti@skidmore.edu) &lt;br&gt;
+[<svg aria-hidden="true" role="img" viewBox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg> marcio.rbind.io](https://marcio.rbind.io) &lt;br&gt;
+[<svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> github.com/marciosantetti](https://github.com/marciosantetti) 
+
+---
+
+# Presentation outline
+
+&lt;br&gt;
+
+1. Introduction/Motivation
+
+2. Related literature
+
+3. Data &amp; empirics
+
+4. Results
+
+5. Conclusions
+
+
+---
+layout: false
+class: inverse, middle
+
+# Introduction
+
+---
+
+# Motivation
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+$$
+`\begin{aligned}
+\text{Aggregate Income} = \text{Wages} + \text{Profits} + \text{Interest} + \text{Rents} + \text{Capital Depreciation}
+\end{aligned}`
+$$
+
+
+---
+
+# The stylized fact I
+
+
+
+
+&lt;img src="research-talk_files/figure-html/unnamed-chunk-6-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+
+# The stylized fact I
+
+&lt;img src="research-talk_files/figure-html/unnamed-chunk-7-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+
+# The stylized fact II
+
+&lt;img src="research-talk_files/figure-html/unnamed-chunk-8-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+
+# The stylized fact II
+
+&lt;img src="research-talk_files/figure-html/unnamed-chunk-9-1.svg" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+# A theoretical reference
+
+.pull-left[
+
+[`Goodwin (1967)`](https://link.springer.com/chapter/10.1007/978-1-349-05504-3_12):
+
+  - A model of the .hi[growth/distributive] cycle;
+  
+  - A never-ending .hi-red[conflict]/.hi[symbiosis] between capital and labor.
+
+]
+
+.pull-right[
+
+&lt;img src="gg.png", width = "70%"&gt;
+]
+
+---
+
+
+
+# Into a picture...
+
+&lt;br&gt;
+
+.center[
+&lt;img src="plane.png", width = "50%"&gt;
+]
+
+---
+
+# Into a picture...
+
+&lt;br&gt;
+
+.center[
+&lt;img src="g1.png", width = "60%"&gt;
+]
+
+
+---
+
+# The "Goodwin pattern"
+
+&lt;br&gt;
+
+.center[
+&lt;img src="full.png", width = "75%"&gt;
+]
+
+
+---
+
+# What does reality say?
+
+--
+
+.hi-grey[Gray] triangles: cycles's .hi-grey[*first*] quarter; .b[Black] triangles: cycle's .b[*last*] quarter.
+
+&lt;img src="research-talk_files/figure-html/unnamed-chunk-10-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+
+# What does reality say?
+
+.hi-grey[Gray] triangles: cycles's *first* quarter; .b[Black] triangles: cycle's *last* quarter.
+
+&lt;img src="research-talk_files/figure-html/unnamed-chunk-11-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+
+# What does reality say?
+
+.hi-grey[Gray] triangles: cycles's *first* quarter; .b[Black] triangles: cycle's *last* quarter.
+
+&lt;img src="research-talk_files/figure-html/unnamed-chunk-12-1.svg" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+# Contribution(s)
+
+&lt;br&gt;
+
+A few .hi-red[limitations] of [`Goodwin's (1967)`](https://link.springer.com/chapter/10.1007/978-1-349-05504-3_12) original story:
+
+&lt;br&gt;
+
+--
+
+  - What .hi[triggers] a new business cycle?
+  
+--
+  
+  - What .hi-slate[stops] a recovery process?
+  
+--
+  
+  - How can this real sector analysis be combined with the .hi[financial] side?
+
+---
+layout: false
+class: inverse, middle
+
+# Related literature
+
+---
+
+# Related literature
+
+.pull-left[.hi[(1) Demand &amp; distributive regimes:]
+
+  - What is the .hi[mechanism] behind this pattern?]
+  
+--
+
+.pull-right[
+&lt;img src="research-talk_files/figure-html/unnamed-chunk-13-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+
+# Related literature
+
+.pull-left[.hi[(1) Demand &amp; distributive regimes:]
+
+  - What is the .hi[mechanism] behind this pattern?
+  - .hi-red[Profit-led demand] &amp; .hi-slate[profit-squeeze distribution]]
+  
+
+
+.pull-right[
+&lt;img src="research-talk_files/figure-html/unnamed-chunk-14-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+
+# Related literature
+
+.pull-left[.hi[(1) Demand &amp; distributive regimes:]
+
+  - What is the .hi[mechanism] behind this pattern?
+  - .hi-red[Profit-led demand] &amp; .hi-slate[profit-squeeze distribution]
+    - [`Barrales et al. (2022)`](https://onlinelibrary.wiley.com/doi/abs/10.1111/joes.12432)
+    - [`Santetti et al. (2023)`](https://www.sciencedirect.com/science/article/abs/pii/S0954349X23001856)]
+  
+
+--
+
+.pull-right[
+
+.hi-red[However], have these regimes *weakened*?
+
+  - [`Goldstein (1999)`](https://onlinelibrary.wiley.com/doi/abs/10.1111/1467-999X.00066)
+  - [`Setterfield (2023)`](https://www.tandfonline.com/doi/full/10.1080/09538259.2021.1921357?casa_token=I72GQj_JGLIAAAAA%3AQZkfEqywOPFq2iCiiApLKL3VaD8SWvPwQp-_5f-vWxZ_qN3bpFKVDLN_MP2IpH1qAr5UcCjocXwm)
+  - [`Carrillo-Maldonando &amp; Nikiforos (2024)`](https://www.sciencedirect.com/science/article/pii/S0954349X23001431)
+
+]
+
+---
+
+# Related literature
+
+.pull-left[.hi[(1) Demand &amp; distributive regimes:]
+
+  - What is the .hi[mechanism] behind this pattern?
+  - .hi-red[Profit-led demand] &amp; .hi-slate[profit-squeeze distribution]
+  - .hi-red[However], have these regimes *weakened*?]
+    
+  
+
+--
+
+.pull-right[.hi[(2) Financial connections:]
+  
+  - *Residential investment* .hi[leads] the business cycle
+  
+    - [`Davis &amp; Heathcote (2005)`](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1468-2354.2005.00345.x)
+    - [`Barbosa-Filho et al. (2008)`](https://www.tandfonline.com/doi/abs/10.2753/PKE0160-3477300407?casa_token=dmgrMd6Tiy4AAAAA:vs1jDNBNpt_0RGN_hVnpDPOHQ62Z_Uue3Ad8SU8My8RJQVoPwEIfrUj5a2jsr0ebiSIc594qUXi4)
+    - [`Fiebiger (2018)`](https://academic.oup.com/cje/article-abstract/42/1/155/3737556?redirectedFrom=PDF&amp;casa_token=d7w-IxrB8fgAAAAA:RZ2uAVvRP1bnTid4k8cxLY0EjyEyHbGIROeQ4fODW90HqJM-VKA_q-kdykgrvMgxZWjMJrDuxGQWPw)
+    
+  - Role of *financial institutions*
+  
+    - [`Foley (1987)`](https://www.sciencedirect.com/science/article/abs/pii/0167268187900503)
+    - [`Taylor (2012)`](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-999X.2010.04117.x)
+    - [`Adrian &amp; Shin (2010)`](https://www.sciencedirect.com/science/article/abs/pii/B9780444532381000120)
+    - [`Stockhammer &amp; Michell (2017)`](https://academic.oup.com/cje/article-abstract/41/1/105/2625385)
+
+
+
+
+
+]
+
+---
+
+# Related literature
+
+.pull-left[.hi[(1) Demand &amp; distributive regimes:]
+
+  - What is the .hi[mechanism] behind this pattern?
+  - .hi-red[Profit-led demand] &amp; .hi-slate[profit-squeeze distribution]
+  - .hi-red[However], have these regimes *weakened*?]
+    
+
+.pull-right[.hi[(2) Financial connections:]
+  
+  - *Residential investment* .hi[leads] the business cycle
+  - Role of *financial institutions*
+]
+
+
+
+.pull-left[
+.hi[(3) Empirics:]
+  
+  - Standard econometric models  (e.g., *VAR*)
+  - A .hi-red[unique] set of parameters
+  - How to account for .hi-slate[continuous] changes?
+    - [`Carrillo-Maldonando &amp; Nikiforos (2024)`](https://www.sciencedirect.com/science/article/pii/S0954349X23001431)
+]
+
+
+--
+
+.pull-right[
+.hi[Here], a comprehensive model
+
+  - .hi-slate[Real-financial] connections;
+  - A .hi-slate[time-varying] econometric methodology;
+  - Have these regimes .hi-slate[actually] weakened?
+]
+
+---
+layout: false
+class: inverse, middle
+
+# Data &amp; empirics
+
+---
+
+# Data &amp; empirics
+
+.hi[Four] system variables:
+
+  - Labor share of income (*&amp;psi;*);
+  - Employment rate (*e*);
+  - Residential investment (*g*);
+  - Interest rate spread (*s*).
+
+---
+
+# Data &amp; empirics
+
+.hi[Four] system variables:
+
+  - .b[Labor share of income] (*&amp;psi;*)
+    - Source: U.S. Bureau of Economic Analysis (BEA).
+    - Ratio between total *compensation* (including public employment) and the sum of the latter and net *interest*, *rental* income, corporate *profits*, and capital *depreciation.*
+    
+&lt;br&gt;
+
+  - .b[Employment rate] (*e*)
+    - Source: U.S. Bureau of Labor Statistics (BLS).
+    - Remainder to 100 of the civilian unemployment rate (%).
+
+---
+
+
+# Data &amp; empirics
+
+.hi[Four] system variables:
+
+  - .b[Residential investment] (*g*)
+    - Source: BEA's National Income and Product Accounts (NIPA), Table 1.1.3.
+    - Index (2012=100).
+  
+&lt;br&gt;
+
+  - .b[Interest rate spread] (*s*)
+    - Source: U.S. Federal Reserve (Fed) System.
+    - Difference between the market yield on U.S. Treasury securities at **10-year** maturity rate and the **3-month** Treasury bills secondary market rate.
+
+
+--
+
+
+- .b[Sample period]: 1953Q2&amp;mdash;2022Q4.
+- .b[Hamilton filter] applied to all variables.
+
+---
+
+# Hamilton filter in action
+
+
+
+&lt;img src="research-talk_files/figure-html/unnamed-chunk-16-1.svg" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+
+# Data &amp; empirics
+
+.pull-left[
+
+A .hi[Vector Autoregressive] (VAR) model with .hi-slate[time-varying] parameters and .hi-red[stochastic volatility]:
+
+&lt;br&gt;
+
+$$
+`\begin{aligned}
+\mathbf{y}_t = X_t\beta_t + A^{-1}_t\Sigma_t\varepsilon_t
+\end{aligned}`
+$$
+
+&lt;br&gt;
+
+where `\(\mathbf{y}_t = (\psi_t, e_t, g_t, s_t)'\)` is a row vector of endogenous variables.
+
+The key estimates are contained in `\(\varepsilon_t\)`, the vector of .b[macroeconomic shocks] (residuals).
+]
+
+--
+
+.pull-right[
+- .hi-slate[Ordering] matters!
+
+
+A .hi[recursive] identification:
+
+$$
+`\begin{aligned}
+\psi_t \rightarrow e_t \rightarrow g_t \rightarrow s_t
+\end{aligned}`
+$$
+
+
+&lt;br&gt;
+
+In words:
+
+  - Finance (*s*) .hi[*leads*] (i.e., precedes) residential investment (*g*);
+  - Residential investment (*g*) .hi[*leads*] employment (*e*);
+  - Employment (*e*) .hi[*leads*] the labor share (*&amp;psi;*).
+
+
+]
+
+
+---
+
+# Data &amp; empirics
+
+.center[
+&lt;img src="ccf.png", width = "55%"&gt;
+]
+
+---
+
+# Data &amp; empirics
+
+&lt;br&gt;
+
+The model is estimated using .hi-slate[Bayesian inference methods]:
+
+  - Procedure developed by [`Primiceri (2005)`](https://academic.oup.com/restud/article-abstract/72/3/821/1556589);
+  
+  - Markov Chain-Monte Carlo (MCMC) algorithm outlined in [`Del Negro &amp; Primiceri (2015)`](https://academic.oup.com/restud/article-abstract/82/4/1342/2607353).
+
+  
+
+
+---
+
+# Data &amp; empirics
+
+.hi[Bayesian inference] relies on *Bayes' theorem*:
+
+$$
+`\begin{aligned}
+P(\theta \ | \ y) = \dfrac{P(\theta) \ P(y \ | \ \theta)}{P(y)}
+\end{aligned}`
+$$
+
+--
+
+&lt;br&gt;
+
+where:
+
+  - *P(&amp;theta;)*: *prior* probability of an unknown parameter *&amp;theta;*;
+  - *P(y | &amp;theta;)*: *likelihood* function;
+  - *P(y)*: normalizing constant;
+  - *P(&amp;theta; | y)*: posterior (updated) probability.
+  
+--
+
+&lt;br&gt;
+
+All results are delivered in terms of .hi[probability distributions].
+
+
+
+---
+layout: false
+class: inverse, middle
+
+# Results
+
+
+
+
+---
+
+# Results
+
+The unknown parameters *(&amp;theta;)* are the .hi[responses] to macroeconomic .hi-red[shocks].
+
+--
+
+.hi-slate[Impulse-Response Functions] (IRFs) to visualize the response of each variable to different shocks over a time horizon.
+
+--
+
+- Subfigures for *six* NBER business cycle peaks: `1973Q1`, `1981Q3`, `1990Q3`, `2001Q1`, `2007Q4`, and `2019Q4`;
+
+- Horizon divided in *five* different quarters ahead: 1, 4, 8, 12, and 20;
+
+- Responses consisting of their entire .hi[posterior] densities at each quarter ahead
+  - Highlighting its posterior *median* and an underlying 66% shaded density region.
+
+---
+
+# Response of employment to a labor share shock
+
+.center[
+&lt;img src="fig6.png", width = "65%"&gt;
+]
+
+---
+
+# Response of labor share to employment shock
+
+.center[
+&lt;img src="fig7.png", width = "65%"&gt;
+]
+
+---
+
+# Response of employment to investment shock
+
+.center[
+&lt;img src="fig8.png", width = "65%"&gt;
+]
+
+---
+
+# Response of investment to financial shock
+
+.center[
+&lt;img src="fig9.png", width = "65%"&gt;
+]
+
+---
+
+# Response of term spread to employment shock
+
+.center[
+&lt;img src="fig10.png", width = "65%"&gt;
+]
+
+
+---
+layout: false
+class: inverse, middle
+
+# Conclusions
+
+
+---
+
+# Conclusions
+
+
+Key findings:
+
+&lt;br&gt;
+
+
+- The U.S. economy's demand regime has become .hi[less] *profit-led* over the past cycles;
+
+--
+
+- *Profit-squeeze* distribution has .hi-red[weakened] over the same period;
+
+--
+
+- The .hi-slate[volatility] (variance) of macroeconomic shocks has *clearly* decreased after the "Great Moderation" years.
+
+--
+
+&lt;br&gt;&lt;br&gt;
+
+.right[What do these conclusions suggest about .hi-red[financial] and .hi-slate[labor market] *institutions*?]
+
+---
+
+layout: false
+class: inverse, middle
+
+# .b[Thank you!]
+
+
+---
+exclude: true
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
